@@ -1,0 +1,8 @@
+1. ipfs init 初始化网络环境
+2. ipfs daemon 启动网络
+3. ipfs cat <ipfs-hash> 查看网络上的文件
+4. ipfs id 查看本机id
+5. ipfs bootstrap list 查看同步的节点
+6. ipfs add <file-path> 上传文件
+7. ipfs add -r <dir-path> 上次文件夹
+8. ipfs name publish <ipfs-hash> 将ipfs上的文件映射到ipns上
