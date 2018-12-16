@@ -1,0 +1,380 @@
+1.单元测试
+单元测试框架：JUnit
+mock框架：mockito
+依赖注入框架:dagger2
+android测试框架：robolectriic
+
+
+2.数据库
+  1.创建一个继承SQLiteOpenHelper的类，重写onCreate(SQLiteDatabase sqlitedatabase)和onUpgrade(SQLiteDatabase sqlitedatabase,int oldvision,int newvision)方法
+  2.创建一个DBDao类来初始化dbhelper类
+  3.用dbhelper.getWritableDatabase()获取可读写的db进行增删改的操作，执行execSQL(String sqlstr)执行操作或者使用insert(),delete(),updata()
+  4.用dbhelper.getReadableDatabase()获取db进行查询操作，执行query()或rawQuery()将返回一个cursor，使用cursor.getInt(cursor.getColumnIndex(""))获取查询的数据
+  5.db.close关闭数据库
+
+使用事务进行增删改操作：
+  db.beginTransaction()
+  db.execSQL()
+  db.setTransactionSuccessful()
+  db.endTransaction()
+
+数据库框架：greenDAO通过new创建实例 LiteOrm通过反射创建实例
+
+3.自定义view
+  1.重写三个构造方法
+  2.重写onMeasure，onLayout, onDraw方法
+  3.自定义属性：在values/attrs.xml文件中定义一个name为自定义view的名字的declare-styleable
+  4.在第三个构造方法中获取自定义的属性的值
+  5.刷新：当布局发生改变时调用requestLayout，当刷新动画时调用invalidate
+
+4.事件分发机制
+  1.activity viewgroup view的dispatchTouchEvent返回true结束事件传递，返回false传递到上层的onTouchEvent,返回super传递到下层的dispatchTouchEvent
+  2.activity viewgroup view的onTouchEvent返回true结束传递，返回false或super传递到上层的onTouchEvent
+  3.viewgroup的dispatchTouchEvent返回super可通过拦截器onInterceptTouchEvent返回true传递到自己的onTouchEvent
+  4.view的dispatchTouchEvent返回super或false即可传递到自己的onTouchEvent
+
+5.materia design
+  1.Snackbar通过在屏幕底部展示简洁信息，类似Toast
+  2.TextInputLayout用于提示输入信息
+  3.FloatActionButton浮动的按钮
+  4.CoordinatorLayout增强版的FrameLayout，用于协调子view的交互
+  5.NavigationView抽屉式导航控件
+  6.DrawLayout可以实现一种抽屉式的侧滑效果
+  7.TabLayout标签栏
+  8.CollapsingToolbarLayout让Toolbar可伸缩
+  9.AppBarLayout可让其子控件实现视差滚动效果，与CoordinatorLayout一起使用
+
+
+6.四大组件
+  1.activity
+    启动模式:standard singletop singletask singleInstance
+    生命周期:onCreate onRestart onStart onResume onPause onStop onDestroy
+  2.service
+    startService:onCreate onStart onDestroy
+    bindService: onCreate onBind onUnBind onDestroy
+  3.contentProider
+    实现contenprovider的抽象接口，把数据完全暴露，通过contentResolver接口访问contentProvider提供的数据
+  4.broadcastReceiver
+    两种注册方式：在XML文件中注册或者代码实现，需要手动注销注册
+
+
+
+7.IO操作
+  1.创建文件：File file = new File(dirpath,name); file.createNewFile();创建目录：File file = new File(path);file.mkdirs();
+  2.IO流
+    字符流：
+      Reader:
+        BufferdReader
+        InputStreamReader:FileReader
+        StringReader
+        PipedReader
+        ByteArrayReader
+        FilterReader:PushbackReader
+      Writer:
+        BufferdWriter
+        OutputStreamWriter:FileWriter
+        PrinterWriter
+        StringWriter
+        PipedWriter
+        ByteArrayWriter
+        FilterWriter
+    字节流：
+      InputStream:
+        FileInputStream
+        FilterInputStream:
+          BufferedInputStrem
+          DataInputStream
+          PushbackInputStream
+        ObjectInputStream
+        PipedInoutStream
+        SequenceInoutStream
+        StringInputStream
+        ByteArrrayInputStream
+     OutputStram:
+       FileOutputStream
+       FilterOutputStream:
+         BufferedOutputStream
+         DataOutputStream
+         PrintStream
+       ObjectOutputStream
+       PipedOutputStream
+       ByteArrayOutputStream
+  3.IO与NIO
+    1.IO面向流，NIO面向缓冲区   
+    2.IO为阻塞模式，NIO为非阻塞模式
+
+
+8.网络编程HttpURLConnection
+  1.创建实例：URL url = new URL(urlstr);HttpURLConnection con = (HttpURLConnection)url.openConnection();
+  2.配置参数：
+    设置链接超时时间：con.setConnectTimeout(3000);
+    设置读取时间：con.setReadTimeout(3000);
+    设置请求方式：con.setRequestMethod("POST");
+    设置请求头：con.setRequestProperty("Connection","Keep-Alive") ;
+    设置输出流和输入流：con.setDoOutput(true);con.setDoInput(true);
+  3.发送请求：
+    获取输出流：OutputStream out = con.getOutputStream(); 
+    将输出流转化为字符流：BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out),"UTF-8");
+    写入数据：bw.writer(paramsstr);
+    刷新：bw.flush();
+    关闭输出流：bw.close;out.close;
+  4.读取响应信息:
+    连接服务器：con.connect();
+    获取输入流：InoutStream in = con.getInputStream();
+    获取服务器响应码：int code = con.getReponseCode();
+    关闭连接：con.close();in.close();
+    
+
+
+9.android多线程
+  1.原则：不要阻塞UI线程，不要在UI线程外访问UI组件
+  2.方式：
+    1.Handler.sendXXXmessage()
+    2.Handler.post(Runnable)
+    3.Activity.runOnUIThread(Runnable)
+    4.View.post(Runnable)
+    5.AsyncTask:
+      1.内部维持着核数+1个线程资源,任务只能执行一次
+      2.步骤：onPreExecute()->doInBackground(Params)->onProgressUpdate(values)->onPostExecute(results)
+      3.在doInBackground(params)里执行耗时的任务,然后在onPostExecute(Result)中将结果更新回UI组件
+
+10.图片内存优化
+   1.将图片保存缓存，减少网络请求
+   2.将图片压缩保存
+   3.加载合适大小的图片
+   4.不用的图片及时recycle
+11.第三方开源库
+   1.rxjava&rxandroid
+      Observable.from(folders)
+    .flatMap(new Func1<File, Observable<File>>() {
+        @Override
+        public Observable<File> call(File file) {
+            return Observable.from(file.listFiles());
+        }
+    })
+    .filter(new Func1<File, Boolean>() {
+        @Override
+        public Boolean call(File file) {
+            return file.getName().endsWith(".png");
+        }
+    })
+    .map(new Func1<File, Bitmap>() {
+        @Override
+        public Bitmap call(File file) {
+            return getBitmapFromFile(file);
+        }
+    })
+    .subscribeOn(Schedulers.io())
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe(new Action1<Bitmap>() {
+        @Override
+        public void call(Bitmap bitmap) {
+            imageCollectorView.addImage(bitmap);
+        }
+    });
+   2.retrofit
+   3.glide
+   4.gson
+     gson.fromJson(jsonstr,poj.class);
+     gson.toJson(poj);
+     gson.fromJson(jsonarray,String[].class);
+     gson.fromJson(jsonarray,new TypeToken(List<String>){}.getType());
+     @serializedName("new_name");
+     支持泛型public class user<T>{
+         public T data;
+     }
+     Gson gson = new GsonBuilder()
+        //序列化null
+        .serializeNulls()
+        // 设置日期时间格式，另有2个重载方法
+        // 在序列化和反序化时均生效
+        .setDateFormat("yyyy-MM-dd")
+        // 禁此序列化内部类
+        .disableInnerClassSerialization()
+        //生成不可执行的Json（多了 )]}' 这4个字符）
+        .generateNonExecutableJson()
+        //禁止转义html标签
+        .disableHtmlEscaping()
+        //格式化输出
+        .setPrettyPrinting()
+        .create();
+
+   5.butterknife
+   
+12.git
+  1.解决冲突
+    git status 
+    git pull
+    git status pop
+    git diff
+    git mergetool
+    git add.
+    git commit - m ""
+    git push origin master
+13.设计模式
+   1.Builder模式：如AlertDialog.Builder
+   2.设配器模式：ListView.setAdapter()
+   3.命令模式：Handler.post()
+   4.享元模式：Message.obtain
+   5.单例模式：InputMethodManger.getInstance
+   6.观察者模式:
+   7.抽象工厂模式：BaseActivity
+14.架构
+  1.mvc:view <- controler<- model<-view
+  2.mvp:view <-> presenter<-> model
+  3.mvvm: view viewmodel model
+15.面向对象六大原则
+  1.单一职责原则：一个类只做一件事情
+  2.里氏替换原则：依赖与继承和多态
+  3.依赖倒置原则：模块间的依赖通过抽象发生，实现类之间不发生依赖关系
+  4.开闭原则：对扩展开放，对修改关闭（继承父类重写需要的方法）
+  5.接口隔离原则：类之间的依赖应建立在最小的接口上
+  6.最少知识原则：类的内部与调用者或依赖者没有关系，调用者只关心他需要的方法；
+
+16.网络七层协议
+  1.物理层
+  2.数据链路层
+  3.网络层
+  4.传输层
+  5.会话层
+  6.表示层
+  7.应用层
+
+17.http
+  请求（响应）行
+  请求（响应）头
+  请求（响应）体
+18.tcp/ip模型
+  1.应用层
+  2.传输层
+  3.网络层
+  4.物理层
+
+19.设计模式
+  1.普通工厂
+  2.抽象工厂
+  3.建造者模式
+  4.单例模式
+  5.克隆模式
+  6.适配器
+  7.装饰模式
+  8.代理模式
+  9.外观模式
+  10.桥接模式
+  11.组合模式
+  12.享元模式
+  13.策略模式
+  14.模板方法
+  15.观察者模式
+  16.迭代子
+  17.责任链
+  18.命令模式
+  19.状态
+  20.备忘录
+  21.访问者
+  22.中介
+  23.解释器
+
+20.fragment生命周期
+  1.onAttach
+  2.onCreate
+  3.onCreateView
+  4.onActivityCreate
+  5.onStart
+  6.onReSume
+  7.onPause
+  8.onStop
+  9.onDestroyView
+  10.onDestroy
+  11.onDetach
+
+21.volley
+22.LRUCache
+  1.内部持有一个顺序为LRU的LindHashMap，当map执行get方法时对应的值会被放到map底部
+  2,当一个元素被put到map里时，判断map里是否存在该对象
+  3.不存在则加入map并将size增加与元素相同的大小
+  4.调整cache的大小：首先检查当前size是否超过maxsize，若超过则移除最顶端的元素使size小于maxsize
+23.broadcastReceiver
+  1.两种注册方式：xml注册，动态代码注册：创建一个filterIntent加入感兴趣的事件，
+  创建一个继承broadCastReceiver对象，重写他的onReceive方法用于处理接受到的消息，调用registeReceiver方法注册broadcastReceiver，
+  然后在需要发送广播的地方调用sandBroadcast方法发送消息
+24.垃圾回收机制
+  1.四种引用类型：强软弱虚
+  2.判断需要回收的对象的方法：
+  3.执行回收的算法
+25.handler
+  1.handler->looper->looper.loop->massagequeue->dispatchmessage
+26.service
+  1.创建一个继承至service的类，重写他的onCreate，onbind,onUnbind,onDestroy方法，在onBind方法内返回一个Ibinder对象
+  2.创建一个继承自serviceconnection的类，重写他的onConnection方法，获取Ibinder对象
+  3.实例化一个Intent对象，将意图指向service类，调用bindService方法绑定一个service
+27.线程和进程
+  1.进程是系统进行资源分配的最小独立单元，进程是具有一定的独立功能的程序关于某个数据集合上的一次运行活动。
+  2.线程是系统进行任务调度的基本单元，线程自己不拥有系统资源，线程拥有自己独立的程序计数器，一组寄存器，栈空间
+    它和同属于同一个进程的其他线程共享进程的资源
+  3.进程拥有独立的地址空间，一个进程崩溃后，在保护模式下不会对其他进程造成影响，
+    而线程只是进程中不同的执行路径，线程拥有自己的堆栈和局部变量，
+    但线程没有自己独立的地址空间，一个线程死掉就等于整个进程死掉，
+    所以多进程程序要比多线程程序健壮，但在进程切换时耗费资源较大。
+  4.一个进程必须拥有一个线程或多个线程，一个线程必须依赖于进程
+
+28.java内存模型和锁机制
+  1.java中的变量和基本数据类型放在栈内存，new出来的对象放在堆内存，指向对象的引用也放在栈内存
+29.android系统架构
+  1.应用程序Applications
+  2.应用程序框架ApplicationFrameworks
+  3.系统运行库与android运行环境Libraris&android runtime
+  4.Linux内核
+
+30.wait(),notify(),allnotify()
+  1.三个方法时object的内部方法final修饰
+  2.调用对象的wait方法会让当前线程进入堵塞，并让出该对象的monitor（锁）
+  3.调用对象的notify方法可以使正在等待该对象monitor的线程获得该对象的monitor
+  4.调用allnotify方法会唤醒所以正在等待该对象monitor的线程
+
+31.构造方法
+  1.子类的构造方法总是先调用父类的构造方法，如果子类构造方法没有显示的调用父类的构造方法那么会默认调用父类无参数的构造方法
+  2.super是子类对象内部持有父类对象的引用，super（）为父类的构造方法
+
+32.interface
+  接口中的变量默认是public static final
+  方法默认是public abstract
+
+33.变量
+  1.成员变量：在类中定义的变量，可以不进行初始化，java自动初始化；
+  2.局部变量：在方法中定义的变量，必须进行初始化；
+  3.类变量：static修饰的变量，在类加载的时候加载，也成为类变量
+  4.常量：final修饰的变量
+
+34.android进程顺序
+  1.可见（前台）进程
+  2.服务进程
+  3.后台进程
+  4.空进程
+
+35.横竖屏切换
+  A 设置Activity的android:screenOrientation="portrait"属性时,无法切换横竖屏，
+  因此不但不会重新调用各个生命周期方法，而且onConfigurationChanged()方法也不会执行。
+ 
+  B 未设置Activity的android:configChanges属性，如果配置有改变，就会重启activity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

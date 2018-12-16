@@ -1,0 +1,85 @@
+常见的媒体格式类型如下： 
+text/html ： HTML格式 
+text/plain ：纯文本格式 
+text/xml ： XML格式 
+image/gif ：gif图片格式 
+image/jpeg ：jpg图片格式 
+image/png：png图片格式
+
+以application开头的媒体格式类型： 
+application/xhtml+xml ：XHTML格式 
+application/xml ： XML数据格式 
+application/atom+xml ：Atom XML聚合格式 
+application/json ： JSON数据格式 
+application/pdf ：pdf格式 
+application/msword ： Word文档格式 
+application/octet-stream ： 二进制流数据（如常见的文件下载） 
+application/x-www-form-urlencoded ： <form encType="">中默认的encType，form表单数据被编码为key/value格式发送到服务器（表单默认的提交数据的格式）
+
+另外一种常见的媒体格式是上传文件之时使用的： 
+multipart/form-data ： 需要在表单中进行文件上传时，就需要使用该格式
+
+
+
+{"flag":1,"msg":"\u767b\u5f55\u9a8c\u8bc1\u6210\u529f\uff01","array":{"id":"30","user_login":"","user_pass":"###347e7247ea6960c1de65251c59554299","user_nicename":"\u5f20\u4e09\u75af","user_email":"","user_url":"","avatar":"http:\/\/jdapp.nnmzkj.com\/.\/data\/upload\/.\/avatar\/5943c4d890f56.jpg","sex":"0","birthday":"2000-01-01","signature":null,"last_login_ip":"171.36.8.105","last_login_time":"2017-07-03 12:12:39","create_time":"2017-06-16 18:32:00","user_activation_key":"","user_status":"1","score":"0","user_type":"4","coin":"0","mobile":"13978192222","student":null,"user_money":"0.00","frozen_money":"0.00","address":"\u53a2\u7af9\u5927\u9053 6\u53f7","qu_address":"\u5357\u5b81\u5e02 \u9752\u79c0\u533a","user_rank":"0","ipcode_j":"108.3850936889648","ipcode_w":"22.82145118713379"}}
+
+{"order_id":"156",
+"order_sn":"2017070311181376450",
+"user_id":"29",
+"user_master_id":"0",
+"user_company_id":"0",
+"jdcate_id":"2",
+"brand_id":"1",
+"guarantee_type":"1",
+"order_status":"0",
+"pay_status":"0",
+"consignee":"",
+"country":"0",
+"province":"0"
+,"city":"0",
+"district":"0",
+"names":"\u6885\u8d85\u98ce","address":"\u798f\u5c45\u8def12\u53f7",
+"qu_address":"\u5357\u5b81\u5e02 \u6c5f\u5357\u533a",
+"ipcode_j":"108.322395324707",
+"ipcode_w":"22.80648231506348",
+"maintenance_list":null,
+"tel":"",
+"mobile":"13978190425",
+"best_time":"2017-07-03 11:17",
+"pay_id":"0",
+"pay_name":"",
+"how_oos":" \u6f0f\u6c34 \u6709\u566a\u97f3 \u52a0\u96ea\u79cd ",
+"amount":"0.00",
+"order_amount":"0.00",
+"integral":"0",
+"from_ad":"0",
+"add_time":"1499051893",
+"confirm_time":"0",
+"pay_time":"0",
+"discount":"0.00",
+"order_type":"1",
+"cat_name":"\u7a7a\u8c03",
+"brand_name":"\u7f8e\u7684",
+"photo_list":[],
+"mi":6645.82,
+"gongli":"6.6"}
+
+
+
+
+{"flag":1,"msg":"\u6709\u6570\u636e","array":{"order_id":"145","order_sn":"2017062613245943130","user_id":"27","user_master_id":"0","user_company_id":"30","jdcate_id":"3","brand_id":"1","guarantee_type":null,"order_status":"1","pay_status":"0","consignee":"","country":"0","province":"0","city":"0","district":"0","names":"\u5b89\u5b89","address":"\u5e7f\u897f\u58ee\u65cf\u81ea\u6cbb\u533a\u6765\u5bbe\u5e02\u5174\u5bbe\u533a","qu_address":null,"ipcode_j":"108.924274","ipcode_w":"23.552255","maintenance_list":null,"tel":"","mobile":"15875855366","best_time":"2017-06-26 13:24:59","pay_id":"0","pay_name":"","how_oos":"\u4e0d\u5236\u51b7\uff0c\u4e0d\u5236\u70ed","amount":"0.00","order_amount":"0.00","integral":"0","from_ad":"0","add_time":"1498454699","confirm_time":"0","pay_time":"0","discount":"0.00","order_type":"0","cat_name":"\u6d17\u8863\u673a","brand_name":"\u7f8e\u7684","photo_list":[]}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

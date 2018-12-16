@@ -1,0 +1,62 @@
+RxJava/RxAndroid:异步
+compile 'io.reactivex:rxjava:1.1.5'
+compile 'io.reactivex:rxandroid:1.2.0'
+
+Retrofit:网络请求
+compile 'com.squareup.retrofit2:retrofit:2.0.0'
+compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
+
+网络调试stetho
+compile 'com.facebook.stetho:stetho:1.4.2'
+    compile 'com.facebook.stetho:stetho-okhttp3:1.4.2'
+
+ButterKnife:依赖注入绑定组件
+compile 'com.jakewharton:butterknife:8.0.1'
+
+Glide:图片加载
+compile 'com.github.bumptech.glide:glide:3.7.0'
+
+material design:
+compile 'com.android.support:design:24.0.0'
+
+cardview:卡片式布局
+compile 'com.android.support:cardview-v7:24.0.0'
+
+recyclview:流式布局
+compile 'com.android.support:recyclerview-v7:24.0.0'
+
+okhttp:网络请求
+compile 'com.squareup.okhttp3:okhttp:3.6.0' 
+compile 'com.squareup.okio:okio:1.11.0'
+
+后端平台bmob-sdk
+添加maven仓库
+maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
+compile 'cn.bmob.android:bmob-sdk:3.5.0'
+兼容android6.0
+compile 'com.android.support:support-v4:23.2.1'
+compile 'cn.bmob.android:http-legacy:1.0'
+
+rxbinding:  
+compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'   
+
+SVG动画解析库：compile 'com.eftimoff:android-pathview:1.0.8@aar'
+
+BottomTab:compile 'me.majiajie:pager-bottom-tab-strip:1.0.0'
+
+圆形图片裁剪：compile 'de.hdodenhof:circleimageview:1.3.0'
+
+数据序列化：compile 'org.parceler:parceler-api:1.1.5'
+apt 'org.parceler:parceler:1.1.5'
+
+com.google.code.gson:gson:2.6.2
+
+爬虫 网页解析：compile 'org.jsoup:jsoup:1.7.3'
+
+更换主题功能：compile 'com.52inc:scoops:0.3.0'
+apt 'com.52inc:scoops-compiler:0.3.0'
+
+动态申请权限
+compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
+

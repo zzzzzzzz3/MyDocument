@@ -1,0 +1,4 @@
+修改为taobao源
+npm config set registry http://registry.npm.taobao.org/
+修改为官方源
+npm config set registry https://registry.npmjs.org/

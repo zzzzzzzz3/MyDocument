@@ -1,0 +1,133 @@
+。事件分发流程 （事件分发流程图）
+
+。view的渲染机制 （UI对象->CPU处理为多维图形，文理->通过OpenGL ES接口调用GPU->GPU对图进行光栅化Frame Rate->硬件时钟Fresh Rate->垂直同步->投射到屏幕显示）
+
+。动画的原理，底层如何给上层信号（？）
+
+。编译打包的过程（1.打包资源文件生成R.java文件 2.处理AIDL文件生成对应的.java文件 3.编译java文件，生成对应的.class文件 4.把.class文件转化为Davilk VM支持的.dex文件 5.将资源文件，.dex文件，libs文件打包生成为签名的.apk文件 6.对.apk文件进行签名 7.对签名后的.apk文件进行对齐处理）
+
+。android的多个资源文件夹，应用在不同的分辨率下是如何查找对应的资源的，描述整个过程（android资源管理框架）
+
+。ANR的原理（KeyDispatchTimeout 5s,BroadcastTimeout 10s,ServiceTimeout 20s）
+
+。Bitmap使用时需要注意什么（1.及时释放bitmap内存 2.对bitmap进行缓存 3.降低采样率）
+
+。oom是否可try-catch（可以捕获，但在捕获到oom后要采取相应的补救措施，这通常不是解决oom的根本办法 try{}catch(OutOfMemoryError e){}）
+
+。内存泄漏如何产生(1.未及时释放资源 2.加载了过多过大的图片 3.静态变量持有外部类的引用)
+
+。适配器模式，装饰者模式，外观模式的异同（代理模式和适配器模式应该说很相像，但是他们的区别也很明显，代理模式和被代理者的接口是同一个，只是使用中客户访问不到被代理者，所以利用代理间接的访问，而适配器模式，是因为接口不同，为了让用户使用到统一的接口，把原先的对象通过适配器让用户统一的使用，大多数运用在代码维护的后期，或者借用第三方库的情况下 ，而外观模式，是大家经常无意中使用的，就是把错综复杂的子系统关系封装起来，然后提供一个简单的接口给客户使用，就类似于一个转接口，可以想象成一个漏斗，中间细的那一段，越细耦合度越低，外观模式就是为了降低耦合度）
+
+。StringBuffer和StringBuild的区别（前者是线程不安全的，后者是线程安全的）
+
+。如何保证线程安全（对在不同线程操作的变量使用volatile修饰，方法/对象使用synchronized修饰，对对象的修改加锁，避免在工作线程操作ui）
+
+。java四种引用（强 软 弱 虚）
+
+。Jni使用（JNI是Java Native Interface的缩写，它提供了若干的API实现了Java和其他语言的通信，主要是C&C++）
+
+。多进程场景（类似音乐类、跑步健身类、手机管家类等长时间需要在后台运行的应用。这些应用的特点就是，当用户切到别的应用，或者关掉手机屏幕的时候，应用本身的核心模块还在正常运行，提供服务。如果因为手机内存过低，或者是进程重要性降低，导致应用被杀掉，后台服务停止，对于这些应用来说，就是灭顶之灾。合理利用多进程，将核心后台服务模块和其他UI模块进行分离，保证应用能更稳定的提供服务，从而提升用户体验。）
+
+。关于handler（用于发送message到Looper，在处理Looper分发的message）
+
+。sqlite升级，增加字段的语句（ALTER TABLE 表名 ADD COLUMN 列名 数据类型）
+
+。bitmap recycler相关（bitmap.recycle()方法用于回收该bitmap所占用的内存，接着将bitmap置空，最后，别忘了用System.gc()调用一下系统的垃圾回收器）
+
+。强引用置为null是否会被回收（垃圾回收机，先去栈上面找引用指针 ，只要是栈上面在引用的就是有效的；否则就是垃圾）
+
+。glide使用什么缓存（三级缓存：内存 磁盘 服务器）
+
+。如何保证多线程读写文件的安全（对文件读写操作进行加锁）
+
+。线程和进程的区别（进程是cpu资源分配的最小单位，线程是cpu调度的最小单位，线程是建立在进程的基础上的一次程序运行单位，一个线程和进程之间的另一个区别是，在同一进程中的线程共享相同的地址空间，而不同的进程没有。因此线程可以读写同样的数据结构和变量，便于线程之间的通信。）
+
+。为什么要有线程，而不仅仅需要进程（进程切换和通信开销大，进程内部需要并行执行任务）
+
+。算法判断单链表是否成环（判断尾节点的下一个节点是否为头结点）
+
+。如何实现线程同步（synchronized）
+
+。hashmap数据结构（链表散列结构 链表元素的结构为Entry<K,V>对象）
+
+。arraylist与linklist异同（同：都是集合 异：ArrayList是数组结构，linkList是链表结构）
+
+。object类的equal与hashcode方法重写，为什么（equal相同hashcode也相同，hashcoode相同equal不一定相同）
+
+。hashmap如何put数据（1.判断其容量 2.判断key是否为null 3.根据hash值获取entry在table中的位置 4.判断链表中是否有相同的key 有则覆盖并返回旧值 没有则添加entry到table对应的链表中）
+
+。简述IPC（ipc是Inter-Progress Communication的缩写，含义为进程间通信或跨进程通信，是指两个进程之间交换数据的过程，在Android中通过Binder可以轻松地实现进程间通信）
+
+。fragment之间传递数据的方式（使用fragment.setArguments（bundle）方法携带数据进行传递）
+
+。简述tcp三次握手四次挥手
+
+。threadlocal原理（用于为线程创建变量副本，创建的副本存储在线程的ThreadLocalMap中，key为TreadLocal，value为变量）
+
+。内存泄漏可能的原因
+。用IDE如何分析内存泄漏
+。OOM的可能原因
+
+。线程死锁的四个条件（1.互斥条件：一个资源每次只能一个进程使用 2.占有且等待：一个进程因请求而阻塞时，对已获得资源保持不放 3.不可强行占有：进程已获得资源，在未使用完之前，不能强行剥夺 4.循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系）
+
+。插值器和估值器（TimeInterpolator：根据时间流逝的百分比计算出当前属性值改变的百分比 TypeEvaluator：根据当前属性改变的百分比计算出改变后的属性值）
+
+。简述消息机制（android通过Looper Handler来实现消息循环循环机制，Looper管理消息队列和分发消息，Handler发送消息和处理消息）
+
+。进程间通信方式（Binder、Socket、ContentProvider、文件、SharePreference）
+
+。binder相关（binder通信是一种client-server的通信结构，
+    1.从表面上来看，是client通过获得一个server的代理接口，对server进行直接调用；
+    2.实际上，代理接口中定义的方法与server中定义的方法是一一对应的；
+    3.client调用某个代理接口中的方法时，代理接口的方法会将client传递的参数打包成为Parcel对象；
+    4.代理接口将该Parcel发送给内核中的binder driver.
+    5.server会读取binder driver中的请求数据，如果是发送给自己的，解包Parcel对象，处理并将结果返回；
+    6.整个的调用过程是一个同步过程，在server处理的时候，client会block住。）
+
+。触摸事件的分发（事件分发流程图）
+
+。简述Activity启动全过程（生命周期：onCreate onRestart onStart onResume onPuase onStop onDestory，启动模式：standard singleTop singleTask instance 启动方式：隐式intent 显示intent ）
+
+。okhttp源码
+。RxJava简介及其源码解读
+。性能优化如何分析systrace
+。广播的分类
+。点击事件被拦截，但是想传到下面的view如何操作
+。glide源码
+。activityThread相关
+。volatile原理
+。synchronize的原理
+。lock原理
+
+。Activity生命周期
+。常见内存泄漏情景及避免内存泄漏的措施
+。activity启动模式简述
+。简绘观察者模式UML图
+。算法：求公共子序列
+。java四种引用
+。自定义veiw重写那几个方法
+。http的session和cookie的区别
+。简述工作线程更新UI的方法
+。应用最多占多少内存
+。滑动卡顿如何解决
+。自定义view
+。多线程多进程相关
+
+。sqlite如何增加一个字段
+。Retrofit和之前的网络库有什么优势
+。RxJava的线程池
+
+。处理有序数组为什么比处理无序数组更快
+。热修复与插件化
+。Integer类是不是线程安全的
+。不使用同步锁如何实现线程安全
+。算法：从上到下从左到右输出二叉树
+
+
+
+复习：
+1.数据结构
+2.算法导论
+3.java编程思想
+4.android知识
+5.jni以及android源码

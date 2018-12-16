@@ -1,0 +1,152 @@
+css
+背景属性
+简写属性background:background-color background-image background-repeat background-attachment background-position
+背景颜色background-color:#ffffff
+背景图片background-image:url('img.jpg')
+背景图像重复background-repeat:repeat默认 repeat-x水平重复 repeat-y垂直重复 no-repeat不重复
+背景图像的起始位置background-position:(x% y%)right/left/center top/bottom/center
+背景图像是否固定或跟随页面其余部分滚动background-attachment:fixed固定 scroll移动
+
+文本格式
+文字颜色color:#ffffff(blue red black green yellow)
+文本对齐text-align:center right left 两端对齐justify
+文本修饰text-decoration:上overline 中line-through 下underline
+文本转换text-tranfotm:大写uppercase 小写lowercase 首字母大写capitalize
+文本缩进text-indent:xpx
+文本方向direction:左到右ltr 右到左rtl
+字符间距letter-spacing:xpx
+行高line-height:x% xpx x
+文字阴影text-shadow:h-shadow w-shadow 模糊距离blur color
+元素垂直对齐vertical-align:默认baseline sub super top text-top middle bottom text-bottom length
+空白处理white-space:normal默认 pre空白会保留 nowrap文本不会换行 pre-wrap空白保留但换行 pre-line合并空白符序列
+字间距word-spacing:xpx
+长内容换行word-wrap：break-word
+
+字体属性
+简写属性font:font-style font-variant font-weight font-size/line-height font-family
+指定元素的字体font-family:times serif "宋体"
+字体大小font-size:x% xpx
+字体样式font-style:normal 斜体italic
+字体粗细font-weight:100-900
+
+链接
+a:link 未访问的链接
+a:visited 一访问的链接
+a:hover 鼠标放在链接上时
+a:active 链接被点击时
+
+列表
+列表项标记类型list-style-type:cricle square upper-roman lower-alpha
+列表标记图像list-style-image:url("img.jpg")
+
+表格
+边框border:1px solid black
+折叠边框border-collapse:collapse
+
+盒子模型
+margin border padding content
+
+边框属性border-style:none dotted点线框 solid实线框 double空心框 
+边框宽度border-width:xpx
+边框颜色border-color:#ffffff
+单独设置各边框border-top(bottom left right)-style
+
+轮廓outline和border类似
+
+外边距margin:margin-top margin-right margin-bottom margin-left
+
+内边距padding和margin类似
+
+分组
+h1,h2,p{h1,h2,p元素具有共同的样式}
+
+嵌套
+.mark p{为class为mark内的所有的p元素设置样式}
+
+尺寸height width max-height max-width min-height min-width
+
+隐藏元素display:none(不占用空间)visiblity:hidden(占用空间)
+块级元素display:block
+内联元素display:inline
+
+定位position:static默认 fixed固定在窗口不会移动 relative相对定位 absolute绝对定位会移动
+
+浮动float:left right none
+清除浮动clear:left right both none
+水平居中margin:auto
+
+伪类
+:checked 选择所有选中的表单元素
+:disabled 选择所有禁用的表单元素
+:empty 没有子元素
+:enabled 启用的元素
+:first-of-type 该元素的第一个子元素
+:in-range 选择元素指定范围内的值
+:invalid 无效的元素
+:last-child 最后一个子元素
+:not(selector) 该元素以外的元素
+:optional 没有"required"的元素
+:required 有"required"的元素
+:out-of-range 指定范围以外的元素
+;read-only 只读的元素
+:valid 有效的元素
+:focus 获得焦点的元素
+:hover 鼠标悬停的元素
+:active 活动的元素
+
+
+透明度
+{
+opacity:0-1;
+filter:alpha(opacity=0-100); /* For IE8 and earlier */
+}
+
+css3 (浏览器 -webkit-safari -moz-firfox -o-Opera)
+圆角边框border-radius:xpx
+盒阴影box-shadow:h-shadow v-shadow blur模糊距离 spread阴影大小 color
+边界图片border-image:source slice width outset repeat
+图片资源border-image-source:url(img.png)
+指定图像的边界向内偏移border-image-slice:number % fill保留中间部分
+图形边界的宽度border-image-width:number % auto
+边框外部绘制 border-image-area 的量border-image-outset:number
+border-image-repeat:repeat平铺 strech拉伸 round平铺缩放 space 
+
+可以给不同的图片设置多个不同的属性
+background-image:url(img_flwr.gif) right bottom no-repeat, url(paper.gif) left top repeat;
+background-size:px %
+background-origin:content-box padding-box border-box
+background-clip:content-box padding-box border-box
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

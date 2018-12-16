@@ -1,0 +1,21 @@
+组件状态
+	Mounting:挂载
+	Updating:更新
+	Unmounting:移除
+
+生命周期经历的阶段
+	创建->实例化->更新->销毁
+
+生命周期回调的方法
+	componentWillMount()
+	componentDidMount()
+	componentWillReceiveProps(object nextProps)
+	shouldComponentUpdate(object nextProps,object nextState)//返回false不更新组件
+	componentWillUpdate(object nextProps,object nextState)
+	componentDidUpdate(object nextProps,object nextState)
+	componentWillUnmount()
+
+props和state初始化方法
+	getDefaultProps
+	getInitialSta
+	

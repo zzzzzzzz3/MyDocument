@@ -1,0 +1,14 @@
+1.初始化RN项目
+react-native init [project name]
+
+2.切换到RN项目根目录下
+cd [project name]
+
+3.运行到android设备
+react-native run-android
+
+4.报错找不到index.android.bundle
+在android项目下添加assets文件目录，执行react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/，然后再次react-native run-android
+
+5.reload报错
+开启npm包服务 npm start，确保android设备与电脑在同一个wifi环境下，设置android设备的debug server host&port为电脑的ip地址

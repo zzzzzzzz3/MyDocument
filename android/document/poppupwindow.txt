@@ -1,0 +1,14 @@
+private void initPoppupWindow() {
+        View popupView = getLayoutInflater().inflate(R.layout.more_poppup_layout, null);
+        mPopupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //设置动画
+        mPopupWindow.setAnimationStyle(R.style.popupWindowAnimation);
+        //设置背景颜色
+        mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+        //设置可以获取焦点
+        mPopupWindow.setFocusable(true);
+        //设置可以触摸弹出框以外的区域
+        mPopupWindow.setOutsideTouchable(true);
+        //更新popupwindow的状态
+        mPopupWindow.update();
+    }
